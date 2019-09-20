@@ -18,8 +18,6 @@ public class Article implements Serializable {
 
     private String title;
     private String body;
-
-    @DateTimeFormat(pattern = "MM-dd-yyyy")
     private Date date;
 
     @Id

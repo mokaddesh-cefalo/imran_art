@@ -25,4 +25,16 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> findArticlesByTitleEquals(String title){
         return articleRepository.findArticlesByTitleEquals(title);
     }
+
+    @Override
+    public Article findArticleById(Long id){
+        return articleRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Article> findAll(){
+        List<Article> articleList = new ArrayList<>();
+        articleRepository.findAll().forEach(article -> articleList.add(article));
+        return articleList;
+    }
 }

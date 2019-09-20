@@ -1,10 +1,20 @@
 package com.shovon.article.pojo.interfaces;
 
 import com.shovon.article.pojo.Article;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
 import java.util.List;
 
-public interface ArticleRepository extends CrudRepository<Article, Long> {
+public interface ArticleRepository extends JpaRepository<Article, Long> {
     List<Article> findArticlesByTitleEquals(String title);
+
+    @Query(value = "select * from article a where a.id = :id", nativeQuery = true)
+    List<Article> findByIdOK(@Param("id")Long id);
 }
