@@ -4,15 +4,11 @@
 <head>
     <title>Article List</title>
     <style>
-        .pagination {
+        .article {
             display: inline-block;
         }
 
-        .article {
-            display: ruby-text-container;
-        }
-
-        .pagination a {
+        .article a {
             color: black;
             float: left;
             padding: 8px 16px;
@@ -21,7 +17,8 @@
             border: 1px solid #ddd;
         }
 
-        .pagination a.active {
+        .article
+        a.active {
             background-color: #4CAF50;
             color: white;
             border: 1px solid #4CAF50;
@@ -31,14 +28,17 @@
     </style>
 </head>
 <body>
-<h1>Welcome to Article Collection</h1>
-<a th:href="@{/article/add}" id="article">Add Another Article</a><br/>
+    <h1>Welcome to Article Collection</h1>
+    <a th:href="@{/article/add}" id="article">Add Another Article</a><br/>
 
-<h3>Click to see Article</h3>
-<div class="pagination">
+    <p th:text="'Page Number : ' + ${currentPage}"></p>
     <div th:each="article : ${articles}" class="article">
         <a th:href="@{'/article/show/' + ${article.id}}" th:text="${article.title}"></a><br/>
     </div>
-</div>
+    <br>
+    <span>Pages:</span>
+    <div th:each="page : ${pages}" class="pagination">
+        <a th:href="@{/articlelist(pagenumber=${page})}" th:text="${page}"></a><br/>
+    </div>
 </body>
 </html>

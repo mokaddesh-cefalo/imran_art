@@ -4,6 +4,7 @@ import com.shovon.article.pojo.Article;
 import com.shovon.article.pojo.interfaces.ArticleRepository;
 import com.shovon.article.pojo.interfaces.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
     @Autowired
     ArticleRepository articleRepository;
+    public static long numberOfArtileInAPage = 4;
 
     @Override
     public List<Article> addArticle(Article article){
@@ -27,8 +29,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article findArticleById(Long id){
-        return articleRepository.findById(id).get();
+    public List<Article> findAll(Pageable pageable){
+        return articleRepository.findAll(pageable).getContent();
     }
 
     @Override
@@ -36,5 +38,28 @@ public class ArticleServiceImpl implements ArticleService {
         List<Article> articleList = new ArrayList<>();
         articleRepository.findAll().forEach(article -> articleList.add(article));
         return articleList;
+    }
+
+    @Override
+    public Long getArticleCount(){
+        return articleRepository.count();
+    }
+
+    public List<Integer> getArticlePageIdList(){
+
+        Long articleCount = getArticleCount();
+        List<Integer> listOfpage = new ArrayList<>();
+
+        int currentCount = 0, addPageId = 0, articlePerPage = 4;
+        while (articleCount >= currentCount){
+            currentCount += articlePerPage;
+            listOfpage.add(addPageId++);
+        }
+
+        return listOfpage;
+    }
+
+    public long articlePerPage(){
+        return numberOfArtileInAPage;
     }
 }

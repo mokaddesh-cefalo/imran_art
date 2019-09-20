@@ -28,4 +28,14 @@ public class Article implements Serializable {
     void beforeAdding(){
         date = new Date();
     }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                ", date=" + date.toString() +
+                ", id=" + id +
+                '}';
+    }
 }
