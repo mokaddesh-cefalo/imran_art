@@ -12,5 +12,6 @@ public interface ArticleService {
     List<Article> findAll();
     Long getArticleCount();
     List<Integer> getArticlePageIdList();
+    Article findArticleById(long id);
     long articlePerPage();
 }

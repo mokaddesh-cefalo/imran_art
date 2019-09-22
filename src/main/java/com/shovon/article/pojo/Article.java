@@ -1,8 +1,6 @@
 package com.shovon.article.pojo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
@@ -13,12 +11,13 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 public class Article implements Serializable {
 
     private String title;
     private String body;
-    private Date date;
+    private  String date;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,16 +25,6 @@ public class Article implements Serializable {
 
     @PrePersist
     void beforeAdding(){
-        date = new Date();
-    }
-
-    @Override
-    public String toString() {
-        return "Article{" +
-                "title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", date=" + date.toString() +
-                ", id=" + id +
-                '}';
+        date = new Date().toString();
     }
 }

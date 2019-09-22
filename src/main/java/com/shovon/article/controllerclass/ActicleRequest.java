@@ -28,7 +28,10 @@ public class ActicleRequest {
     @PostMapping("/add")
     public String addNewArticlePost(Article article){
         List<Article> newArticle = articleService.addArticle(article);
-        newArticle.stream().forEach(article1 -> System.out.println(article1.toString()));
+
+        if(newArticle != null)
+            newArticle.stream().forEach(article1 -> System.out.println(article1.toString()));
+
         return "redirect:/";
     }
 
@@ -36,5 +39,19 @@ public class ActicleRequest {
     public String showArticle(Model model, @PathVariable(value = "id") Article article){
         model.addAttribute("article", article);
         return "showarticle";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateArticle(Model model, @PathVariable(value = "id") Article article){
+        System.out.println(article.toString());
+        model.addAttribute("article", article);
+        return "updatearticle";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateArticlePost(Article article){
+        System.out.println(article.toString());
+        articleService.addArticle(article);
+        return "redirect:/article/show/" + article.getId();
     }
 }

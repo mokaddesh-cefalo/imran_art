@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update article</title>
+</head>
+<body>
+
+<h1>Update Story</h1>
+
+<form method="POST" th:action="@{'/article/update/' + ${article.id} }" th:object="${article}">
+
+    <label for="title">Title: </label><br/>
+    <input type="text" th:field="*{title}" id="title"  th:value="${article.title}"/><br/>
+
+    <label for="body">Body: </label><br/>
+    <textarea th:field="*{body}" id="body"  rows="10" cols="50" th:text="${article.body}"></textarea><br/>
+
+    <label for="date">Published Date: </label><br/>
+    <input type="text" th:field="*{date}" id="date" th:value="${article.date}"/><br/>
+
+    <input type="submit" value="Update"/>
+
+</form>
+
+</body>
+</html>
