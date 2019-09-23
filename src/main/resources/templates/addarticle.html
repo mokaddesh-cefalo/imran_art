@@ -7,6 +7,10 @@
 </head>
 <body>
 
+    <form method="GET" th:action="@{'/'}">
+        <input type="submit" value="Home"/>
+    </form>
+    <br/>
     <h1>Create New Story</h1>
 
     <form method="POST" th:action="@{/article/add}" id="addarticle">

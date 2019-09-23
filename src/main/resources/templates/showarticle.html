@@ -5,8 +5,13 @@
     <title>Article</title>
 </head>
 <body>
+    <form method="GET" th:action="@{'/'}">
+        <input type="submit" value="Home"/>
+    </form>
+    <br/>
     <h1 th:text="${article.title}"></h1>
     <p th:text="${article.body}"></p><br>
     <p>Published Date : <span th:text="${article.date}"></span> </p>
+    <a th:href="'/article/update/' + ${article.id}">Update</a>
 </body>
 </html>

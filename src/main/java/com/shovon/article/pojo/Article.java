@@ -11,12 +11,13 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Entity
 public class Article implements Serializable {
 
     private String title;
     private String body;
+
+    @Column(updatable = false)
     private  String date;
 
     @Id

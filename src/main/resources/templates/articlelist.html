@@ -8,6 +8,10 @@
             display: inline-block;
         }
 
+        .pagination {
+            display: inline-block;
+        }
+
         .article a {
             color: black;
             float: left;
@@ -28,6 +32,12 @@
     </style>
 </head>
 <body>
+
+    <form method="GET" th:action="@{'/'}">
+        <input type="submit" value="Home"/>
+    </form>
+    <br/>
+
     <h1>Welcome to Article Collection</h1>
     <a th:href="@{/article/add}" id="article">Add Another Article</a><br/>
 

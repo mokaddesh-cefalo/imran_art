@@ -7,22 +7,31 @@
 </head>
 <body>
 
-<h1>Update Story</h1>
 
-<form method="POST" th:action="@{'/article/update/' + ${article.id} }" th:object="${article}">
+    <form method="GET" th:action="@{'/'}">
+        <input type="submit" value="Home"/>
+    </form>
+    <br/>
 
-    <label for="title">Title: </label><br/>
-    <input type="text" th:field="*{title}" id="title"  th:value="${article.title}"/><br/>
+    <h1>Update Story</h1>
 
-    <label for="body">Body: </label><br/>
-    <textarea th:field="*{body}" id="body"  rows="10" cols="50" th:text="${article.body}"></textarea><br/>
+    <form method="POST" th:action="@{'/article/update/' + ${article.id} }" th:object="${article}">
 
-    <label for="date">Published Date: </label><br/>
-    <input type="text" th:field="*{date}" id="date" th:value="${article.date}"/><br/>
+        <label for="title">Title: </label><br/>
+        <input type="text" th:field="*{title}" id="title"  th:value="${article.title}"/><br/><br/>
 
-    <input type="submit" value="Update"/>
+        <label for="body">Body: </label><br/>
+        <textarea th:field="*{body}" id="body"  rows="10" cols="50" th:text="${article.body}"></textarea><br/><br/>
 
-</form>
+        <span type="text"  id="date" th:text="'Published Date: ' + ${article.date}"/><br/>
+
+        <input type="submit" value="Update"/>
+
+    </form>
+
+    <form method="GET" th:action="@{'/article/delete/' + ${article.id} }">
+        <input type="submit" value="Delete"/>
+    </form>
 
 </body>
 </html>

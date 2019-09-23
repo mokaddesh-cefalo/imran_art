@@ -14,4 +14,5 @@ public interface ArticleService {
     List<Integer> getArticlePageIdList();
     Article findArticleById(long id);
     long articlePerPage();
+    void deleteById(long id);
 }
