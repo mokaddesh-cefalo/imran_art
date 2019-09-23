@@ -38,4 +38,6 @@ public class testController {
         articleRepository.findAll().forEach(article -> articleList.add(article));
         return articleList;
     }
+
+
 }

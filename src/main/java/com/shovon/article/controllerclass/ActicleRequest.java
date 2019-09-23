@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -25,6 +26,7 @@ public class ActicleRequest {
 
     @PostMapping("/add")
     public String addNewArticlePost(Article article){
+        article.setCreatedBy("fish");
         List<Article> newArticle = articleService.addArticle(article);
 
         if(newArticle != null)

@@ -10,6 +10,7 @@
     </form>
     <br/>
     <h1 th:text="${article.title}"></h1>
+    <h3 th:text="'Created By : '+ ${article.createdBy.userName}"></h3>
     <p th:text="${article.body}"></p><br>
     <p>Published Date : <span th:text="${article.date}"></span> </p>
     <a th:href="'/article/update/' + ${article.id}">Update</a>

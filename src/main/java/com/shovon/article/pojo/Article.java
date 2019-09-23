@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -24,8 +26,16 @@ public class Article implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne
+    private User createdBy;
+
     @PrePersist
     void beforeAdding(){
         date = new Date().toString();
+    }
+
+    public void setCreatedBy(String userName){
+        createdBy = new User();
+        createdBy.setUserName(userName);
     }
 }

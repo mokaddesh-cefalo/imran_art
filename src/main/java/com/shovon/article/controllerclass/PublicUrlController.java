@@ -1,6 +1,7 @@
 package com.shovon.article.controllerclass;
 
 import com.shovon.article.pojo.Article;
+import com.shovon.article.pojo.User;
 import com.shovon.article.pojo.interfaces.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
