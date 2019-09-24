@@ -1,7 +1,8 @@
-package com.shovon.article.security;
+package com.shovon.article.service;
+
 
 import com.shovon.article.pojo.User;
-import com.shovon.article.pojo.interfaces.UserService;
+import com.shovon.article.pojo.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,12 +14,14 @@ import java.util.Optional;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
-    @Autowired UserService userService;
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Optional<User> user = userService.findUserById(s);
-        user.orElseThrow(() -> new UsernameNotFoundException("User Not found :" + s));
+
+        Optional<User> user = userRepository.findByUserName(s);
+        user.orElseThrow(() -> new UsernameNotFoundException("NOt found :" + s));
         return user.map(MyUserDetails::new).get();
     }
 }

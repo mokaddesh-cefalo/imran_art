@@ -1,11 +1,10 @@
-package com.shovon.article.security;
+package com.shovon.article.service;
+
 
 import com.shovon.article.pojo.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -14,16 +13,20 @@ import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
 
-    private String password;
     private String userName;
+    private String password;
     private boolean active;
     private List<GrantedAuthority> authorities;
 
+    public MyUserDetails() {
+    }
+
     public MyUserDetails(User user){
-        password = user.getPassword();
-        active = user.isActive();
-        authorities = Arrays.stream(user.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)
+        this.userName = user.getUserName();
+        this.password = user.getPassword();
+        this.active = user.isActive();
+        this.authorities = Arrays.stream(user.getRoles()
+                .split(",")).map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
 

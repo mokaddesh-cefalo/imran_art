@@ -1,7 +1,5 @@
 package com.shovon.article.controllerclass;
 
-import com.shovon.article.pojo.Article;
-import com.shovon.article.pojo.User;
 import com.shovon.article.pojo.interfaces.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -12,13 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class PublicUrlController {
 
     @Autowired ArticleService articleService;
@@ -35,8 +29,4 @@ public class PublicUrlController {
         return "articlelist";
     }
 
-    @GetMapping
-    public String welcome() {
-        return "welcome";
-    }
 }

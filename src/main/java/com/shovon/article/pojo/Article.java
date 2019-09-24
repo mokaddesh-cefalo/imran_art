@@ -34,8 +34,4 @@ public class Article implements Serializable {
         date = new Date().toString();
     }
 
-    public void setCreatedBy(String userName){
-        createdBy = new User();
-        createdBy.setUserName(userName);
-    }
 }

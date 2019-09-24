@@ -1,25 +1,31 @@
 package com.shovon.article.controllerclass;
 
+
 import com.shovon.article.pojo.Article;
 import com.shovon.article.pojo.interfaces.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-public class testController {
+import static org.springframework.data.domain.Sort.*;
 
-    @Autowired ArticleRepository articleRepository;
+@RestController
+public class TestController {
+
+    @Autowired
+    ArticleRepository articleRepository;
 
     @RequestMapping("/test")
     public List<Article> dude(){
-        Pageable pageable = PageRequest.of(0, 4, Sort.by("date").descending());
+        Pageable pageable = PageRequest.of(0, 4, by("date").descending());
         return articleRepository.findAll(pageable).getContent();
     }
 

@@ -1,5 +1,6 @@
 package com.shovon.article.pojo.interfaces;
 
+
 import com.shovon.article.pojo.Article;
 import org.springframework.data.domain.Pageable;
 

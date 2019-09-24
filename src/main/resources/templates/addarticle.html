@@ -10,8 +10,13 @@
     <form method="GET" th:action="@{'/'}">
         <input type="submit" value="Home"/>
     </form>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
     <br/>
-    <h1>Create New Story</h1>
+    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <h3>Create New Story</h3>
 
     <form method="POST" th:action="@{/article/add}" id="addarticle">
 

@@ -1,5 +1,6 @@
 package com.shovon.article.service;
 
+
 import com.shovon.article.pojo.Article;
 import com.shovon.article.pojo.interfaces.ArticleRepository;
 import com.shovon.article.pojo.interfaces.ArticleService;
@@ -7,15 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
-    @Autowired
-    ArticleRepository articleRepository;
+    @Autowired ArticleRepository articleRepository;
     public static long numberOfArtileInAPage = 4;
 
     @Override
