@@ -13,32 +13,19 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
-    UserRepository userRepository;
+    @Autowired UserRepository userRepository;
 
-    User addUser(String userGson){
-        Gson gson = new Gson();
-        User newUser = null;
-
-        try {
-            newUser = gson.fromJson(userGson, User.class);
-        }catch (JsonParseException e){
-           e.fillInStackTrace();
-        }
-
-        System.out.println(newUser.toString());
+    public User save(User newUser){
         return userRepository.save(newUser);
     }
 
-    User addUser(User newUser){
-        if(newUser.getUserName() == null || newUser.getUserName().equals("")) return null;
-        if(newUser.getPassword() == null || newUser.getPassword().equals("")) return null;
-        return userRepository.save(newUser);
-    }
-
-    List<User> getAlluser(){
+    public List<User> getAlluser(){
         List<User> users = new ArrayList<>();
         userRepository.findAll().forEach(x -> users.add(x));
         return users;
+    }
+
+    public User findByUserName(String userName){
+        return userRepository.findByUserName(userName).get();
     }
 }

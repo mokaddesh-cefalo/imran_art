@@ -7,6 +7,8 @@
 </head>
 <body>
 
+    <p><a th:href="@{/login}">log in</a></p>
+    <br>
     <form method="POST" th:action="@{/register}" th:object="${user}">
         <label for="userName">UserName: </label>
         <input id="userName" type="text" name="userName">

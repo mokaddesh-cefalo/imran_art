@@ -2,7 +2,9 @@ package com.shovon.article.controllerclass;
 
 
 import com.shovon.article.pojo.Article;
+import com.shovon.article.pojo.User;
 import com.shovon.article.pojo.interfaces.ArticleService;
+import com.shovon.article.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,11 @@ public class ActicleRequest {
     @Autowired
     ArticleService articleService;
 
+    @Autowired
+    UserService userService;
+
+    User user = null;
+
     @GetMapping("/add")
     public String addNewArticleGet(Model model){
         model.addAttribute("article", new Article());
@@ -28,7 +36,11 @@ public class ActicleRequest {
     }
 
     @PostMapping("/add")
-    public String addNewArticlePost(Article article){
+    public String addNewArticlePost(Article article, Principal principal){
+
+        User cUser = userService.findByUserName(principal.getName());
+        article.setCreatedBy( cUser );
+
         List<Article> newArticle = articleService.addArticle(article);
 
         if(newArticle != null)
